@@ -78,7 +78,8 @@ export default function MakinelerClient({ items }: { items: MakineItem[] }) {
   }, [items, currentLanguage]) // currentLanguage'i dependency'ye ekledik
 
   const filtered = useMemo(() => {
-    return items.filter(it => {
+    // 1. Filtreleme
+    const filteredItems = items.filter(it => {
       // Slug kontrolü - slug'ı olmayan makineleri filtrele
       if (!it.slug?.current) return false
       
@@ -94,7 +95,33 @@ export default function MakinelerClient({ items }: { items: MakineItem[] }) {
       const mOk = m.size === 0 || (it.marka?._id && m.has(it.marka._id))
       return uOk && sOk && kOk && mOk
     })
-  }, [items, selected])
+
+    // 2. Sıralama (Markaya göre)
+    // Sıralama önceliği: Durkopp Adler > Pfaff > KSL > Diğerleri
+    return filteredItems.sort((a, b) => {
+      const brandA = getText(a.marka?.baslik).toLowerCase();
+      const brandB = getText(b.marka?.baslik).toLowerCase();
+
+      const priority = ['durkopp adler', 'pfaff', 'ksl'];
+
+      const indexA = priority.findIndex(p => brandA.includes(p));
+      const indexB = priority.findIndex(p => brandB.includes(p));
+
+      // İkisi de öncelikli listede varsa, listedeki sıraya göre
+      if (indexA !== -1 && indexB !== -1) {
+        return indexA - indexB;
+      }
+
+      // Sadece A listedeyse, A öne geçer
+      if (indexA !== -1) return -1;
+      
+      // Sadece B listedeyse, B öne geçer
+      if (indexB !== -1) return 1;
+
+      // İkisi de listede yoksa, varsayılan (tarih veya ID) sırasını koru
+      return 0;
+    });
+  }, [items, selected, currentLanguage])
 
   function toggle(kind: 'urunTipi' | 'sektor' | 'kategori' | 'marka', id: string) {
     setSelected(prev => {
