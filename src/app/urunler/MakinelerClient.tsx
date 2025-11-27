@@ -102,14 +102,18 @@ export default function MakinelerClient({ items }: { items: MakineItem[] }) {
       const brandA = getText(a.marka?.baslik).toLowerCase();
       const brandB = getText(b.marka?.baslik).toLowerCase();
 
-      const priority = ['durkopp adler', 'pfaff', 'ksl'];
+      // Daha kapsayıcı arama terimleri (ör: 'durkopp adler' yerine 'durkopp')
+      const priority = ['durkopp', 'dürkopp', 'pfaff', 'ksl'];
 
       const indexA = priority.findIndex(p => brandA.includes(p));
       const indexB = priority.findIndex(p => brandB.includes(p));
 
       // İkisi de öncelikli listede varsa, listedeki sıraya göre
       if (indexA !== -1 && indexB !== -1) {
-        return indexA - indexB;
+        // 'durkopp' ve 'dürkopp' aynı öncelikte (0 ve 1) olmalı, bu yüzden basit index farkı yerine gruba göre bakalım
+        const groupA = indexA <= 1 ? 0 : indexA; // Durkopp/Dürkopp grubu 0
+        const groupB = indexB <= 1 ? 0 : indexB; // Durkopp/Dürkopp grubu 0
+        return groupA - groupB;
       }
 
       // Sadece A listedeyse, A öne geçer
