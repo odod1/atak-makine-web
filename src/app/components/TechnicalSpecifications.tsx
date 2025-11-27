@@ -139,7 +139,7 @@ export default function TechnicalSpecifications({ teknikOzellikler, currentLang 
           <table className="w-full" style={{ minWidth: 'max-content' }}>
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50/50">
-                <th className="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider sticky left-0 z-20 bg-gray-50/95 backdrop-blur border-r border-gray-200 shadow-[4px_0_24px_rgba(0,0,0,0.02)]" style={{ width: '200px', minWidth: '200px', maxWidth: '200px' }}>
+                <th className="px-2 py-3 md:px-6 md:py-4 text-left text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider sticky left-0 z-20 bg-gray-50/95 backdrop-blur border-r border-gray-200 shadow-[4px_0_24px_rgba(0,0,0,0.02)] min-w-[100px] max-w-[100px] md:min-w-[200px] md:max-w-[200px]">
                   {/* Empty header for machine column */}
                 </th>
                 {(aktifOzellikler || []).map((ozellik, idx) => {
@@ -147,13 +147,13 @@ export default function TechnicalSpecifications({ teknikOzellikler, currentLang 
                   const ozellikAciklama = getLocalizedText(ozellik.aciklama, activeLang);
                   
                   return (
-                    <th key={idx} className="px-6 py-4 text-center text-xs font-bold text-gray-700 uppercase tracking-wider relative border-r border-gray-100 last:border-r-0" style={{ width: '180px', minWidth: '180px' }}>
+                    <th key={idx} className="px-2 py-3 md:px-6 md:py-4 text-center text-[10px] md:text-xs font-bold text-gray-700 uppercase tracking-wider relative border-r border-gray-100 last:border-r-0 min-w-[110px] md:min-w-[180px]">
                       <div className="flex flex-col items-center justify-center gap-1.5">
-                        <span className="font-bold">{ozellikBaslik}</span>
+                        <span className="font-bold break-words whitespace-normal">{ozellikBaslik}</span>
                         {ozellikAciklama && (
                           <div className="relative">
                             <div 
-                              className="w-5 h-5 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center text-[10px] font-bold cursor-help hover:bg-brand-blue hover:text-white transition-all flex-shrink-0"
+                              className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center text-[8px] md:text-[10px] font-bold cursor-help hover:bg-brand-blue hover:text-white transition-all flex-shrink-0"
                               onMouseEnter={(e) => {
                                 const rect = e.currentTarget.getBoundingClientRect();
                                 setTooltipPosition({
@@ -180,7 +180,7 @@ export default function TechnicalSpecifications({ teknikOzellikler, currentLang 
             <tbody className="divide-y divide-gray-100">
               {(makineler || []).map((makine, makineIdx) => (
                 <tr key={makineIdx} className="group hover:bg-blue-50/30 transition-colors even:bg-gray-50/30">
-                  <td className="px-6 py-4 text-sm font-bold text-brand-blue bg-white group-hover:bg-blue-50/30 transition-colors sticky left-0 z-10 border-r border-gray-200 shadow-[4px_0_24px_rgba(0,0,0,0.02)]" style={{ width: '200px', minWidth: '200px', maxWidth: '200px' }}>
+                  <td className="px-2 py-3 md:px-6 md:py-4 text-[11px] md:text-sm font-bold text-brand-blue bg-white group-hover:bg-blue-50/30 transition-colors sticky left-0 z-10 border-r border-gray-200 shadow-[4px_0_24px_rgba(0,0,0,0.02)] min-w-[100px] max-w-[100px] md:min-w-[200px] md:max-w-[200px]">
                     <div className="truncate" title={makine}>{makine}</div>
                   </td>
                   {(aktifOzellikler || []).map((ozellik, ozellikIdx) => {
@@ -191,21 +191,21 @@ export default function TechnicalSpecifications({ teknikOzellikler, currentLang 
                     const standardMi = standardDurum === 'standard';
 
                     return (
-                      <td key={ozellikIdx} className="px-6 py-4 text-center border-r border-gray-100 last:border-r-0" style={{ width: '180px', minWidth: '180px' }}>
+                      <td key={ozellikIdx} className="px-2 py-3 md:px-6 md:py-4 text-center border-r border-gray-100 last:border-r-0 min-w-[110px] md:min-w-[180px]">
                         <div className="flex items-center justify-center gap-2 min-h-[24px]">
                           {deger && (
-                            <span className="text-sm font-medium text-gray-700">{deger}</span>
+                            <span className="text-[11px] md:text-sm font-medium text-gray-700 break-words whitespace-normal">{deger}</span>
                           )}
                           {ikonGosterilsinMi && (
-                            <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                            <div className={`w-4 h-4 md:w-5 md:h-5 rounded-full flex items-center justify-center ${
                               standardMi 
                                 ? 'bg-green-100 text-green-600' 
                                 : 'bg-gray-100 text-gray-400 border border-gray-200'
                             }`}>
                               {standardMi ? (
-                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
+                                <svg className="w-3 h-3 md:w-3.5 md:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
                               ) : (
-                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                <svg className="w-3 h-3 md:w-3.5 md:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                               )}
                             </div>
                           )}
