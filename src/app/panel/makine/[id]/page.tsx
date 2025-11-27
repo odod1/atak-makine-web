@@ -78,14 +78,23 @@ export default async function MakineDetayPage({ params }: { params: Promise<{ id
                     <h1 className="text-3xl font-bold text-gray-900">{makine.baslik?.tr || makine.model}</h1>
                     <p className="text-xl text-blue-600 font-mono mt-1">{makine.seriNo || 'Seri No Girilmemiş'}</p>
                 </div>
-                {/* Yeni Kayıt Ekle Butonu (Sadece Admin) */}
+                {/* Yeni Kayıt Ekle ve Düzenle Butonları (Sadece Admin) */}
                 {session.user.yetki === 'admin' && (
-                    <Link 
-                        href={`/panel/makine/${makine._id}/ekle`}
-                        className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow transition flex items-center gap-2"
-                    >
-                        <span>+ Servis Kaydı Ekle</span>
-                    </Link>
+                    <div className="flex gap-2">
+                        <Link 
+                            href={`/panel/admin/makine-duzenle/${makine._id}`}
+                            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow transition flex items-center gap-2"
+                        >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                            <span>Düzenle</span>
+                        </Link>
+                        <Link 
+                            href={`/panel/makine/${makine._id}/ekle`}
+                            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow transition flex items-center gap-2"
+                        >
+                            <span>+ Servis Kaydı</span>
+                        </Link>
+                    </div>
                 )}
             </div>
             

@@ -45,9 +45,9 @@ export default function ContactPage() {
 
       const result = await response.json()
 
-      setSubmitStatus('success')
-      setMessage(result.message)
-      // Formu temizle
+        setSubmitStatus('success')
+        setMessage(result.message)
+        // Formu temizle
       form.reset()
     } catch (error) {
       console.error('Form gönderme hatası:', error)

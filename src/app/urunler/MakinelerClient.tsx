@@ -224,7 +224,7 @@ export default function MakinelerClient({ items }: { items: MakineItem[] }) {
               </div>
             ))}
           </div>
-        </div>
+          </div>
         </div>
       </aside>
 
