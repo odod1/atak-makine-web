@@ -104,3 +104,4 @@ export default function QRCodeCard({ makine, targetUrl }: QRCodeCardProps) {
 }
 
 
+
