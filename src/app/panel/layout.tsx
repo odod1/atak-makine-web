@@ -45,19 +45,19 @@ export default async function PanelLayout({ children }: { children: ReactNode })
 
           {/* Sağ: Aksiyonlar ve Kullanıcı */}
           <div className="flex items-center gap-3 md:gap-6">
-             {/* QR Butonu (Header'a Taşındı) */}
+             {/* QR Butonu (Mobilde Gizli) */}
              <Link 
                 href="/panel/admin/qr-kodlar" 
-                className="bg-purple-600 hover:bg-purple-700 text-white p-2 md:px-4 md:py-2 rounded-md shadow-sm flex items-center gap-2 text-sm font-bold transition transform hover:scale-105 active:scale-95"
+                className="hidden md:flex bg-purple-600 hover:bg-purple-700 text-white p-2 md:px-4 md:py-2 rounded-md shadow-sm items-center gap-2 text-sm font-bold transition transform hover:scale-105 active:scale-95"
                 title="QR Kod Merkezi"
              >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-                    <path fillRule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm8-1a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V4zm-9 7a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1v-4zm8-1a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" clipRule="evenodd" />
+                    <path fillRule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm8-1a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V4zm-9 7a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm8-1a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1v-4z" clipRule="evenodd" />
                 </svg>
-                <span className="hidden md:inline">QR Kodlar</span>
+                <span>QR Kodlar</span>
              </Link>
 
-             <div className="h-6 md:h-8 w-px bg-gray-200"></div>
+             <div className="hidden md:block h-6 md:h-8 w-px bg-gray-200"></div>
 
              <div className="flex flex-col items-end text-right">
                 <span className="text-gray-800 font-bold text-sm md:text-base leading-tight max-w-[100px] truncate md:max-w-none">
