@@ -10,7 +10,7 @@ const languages = [
   { code: 'uz' as Language, name: 'O\'zbekcha', flag: '🇺🇿' },
 ];
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ dropdownAlign = 'right' }: { dropdownAlign?: 'left' | 'right' }) {
   const { currentLanguage, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -62,7 +62,13 @@ export default function LanguageSwitcher() {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-gray-100 z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200 origin-top-right">
+        <div 
+          className={`absolute mt-2 w-48 bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-gray-100 z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200 ${
+            dropdownAlign === 'right' 
+              ? 'right-0 origin-top-right' 
+              : 'left-0 origin-top-left'
+          }`}
+        >
           <div className="py-1.5">
             {languages.map((language) => (
               <button

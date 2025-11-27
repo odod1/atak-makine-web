@@ -134,7 +134,7 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="px-4 py-3 border-t border-gray-50 mt-2 flex items-center justify-between">
-            <LanguageSwitcher />
+            <LanguageSwitcher dropdownAlign="left" />
             <Link 
                 href="/giris"
                 className="text-sm font-bold text-blue-900 flex items-center gap-1 bg-blue-50 px-3 py-1.5 rounded-lg"
