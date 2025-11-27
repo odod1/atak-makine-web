@@ -140,6 +140,9 @@ export default function MakinelerClient({ items }: { items: MakineItem[] }) {
     setSelected({ urunTipi: new Set(), sektor: new Set(), kategori: new Set(), marka: new Set() })
   }
 
+  // Mobil filtre durumu
+  const [showMobileFilters, setShowMobileFilters] = useState(false)
+
   // Eğer hiç ürün yoksa boş mesajı göster
   if (items.length === 0) {
     return (
@@ -150,9 +153,21 @@ export default function MakinelerClient({ items }: { items: MakineItem[] }) {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-1">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+      {/* Mobil Filtre Butonu */}
+      <div className="lg:hidden mb-4">
+        <button
+          onClick={() => setShowMobileFilters(!showMobileFilters)}
+          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white border border-gray-200 rounded-xl shadow-sm text-gray-700 font-medium active:scale-[0.98] transition-transform"
+        >
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 6h18M6 12h12M10 18h4"/></svg>
+          {t('filter')} {showMobileFilters ? 'Gizle' : 'Göster'}
+        </button>
+      </div>
+
       {/* Filters */}
-		<aside className="w-full lg:col-span-3 lg:max-w-lg lg:sticky lg:top-32 lg:self-start lg:-ml-24 xl:-ml-40 2xl:-ml-56">
+		<aside className={`w-full lg:col-span-3 lg:block ${showMobileFilters ? 'block' : 'hidden'}`}>
+			<div className="lg:sticky lg:top-32">
 			<div className="rounded-2xl bg-white/90 backdrop-blur border border-white/80 shadow-lg ring-1 ring-black/5 overflow-hidden">
 				<div className="flex items-center justify-between px-4 py-4 bg-gradient-to-r from-brand-blue/5 to-transparent">
 					<div className="flex items-center gap-2 text-gray-900">
@@ -210,10 +225,11 @@ export default function MakinelerClient({ items }: { items: MakineItem[] }) {
             ))}
           </div>
         </div>
+        </div>
       </aside>
 
       {/* Results */}
-      <section className="lg:col-span-9 -ml-6 sm:-ml-10 md:-ml-14 lg:-ml-20 xl:-ml-28 2xl:-ml-40">
+      <section className="lg:col-span-9">
         <div className="mb-4 flex items-center justify-between text-sm text-gray-600">
           <span>{t('totalResults')} <strong className="text-brand-blue">{filtered.length}</strong></span>
         </div>
