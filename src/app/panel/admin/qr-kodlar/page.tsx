@@ -23,8 +23,8 @@ export default async function QRGeneratorPage() {
   let params = {}
 
   if (session.user.yetki === 'admin') {
-    // Admin hepsini görür
-    query = `*[_type == "makine"] {
+    // Admin: Sadece bir firmaya atanmış (satılmış) makineleri görür
+    query = `*[_type == "makine" && defined(firma)] {
       _id,
       baslik,
       seriNo,
@@ -45,7 +45,11 @@ export default async function QRGeneratorPage() {
 
   const makineler = await client.fetch(query, params)
 
-  const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000'
+  // Production URL'ini öncelikli kullan, yoksa env variable, o da yoksa localhost
+  const productionUrl = 'https://www.atakmakineuz.com'
+  const baseUrl = process.env.NEXTAUTH_URL?.includes('localhost') 
+    ? productionUrl 
+    : (process.env.NEXTAUTH_URL || productionUrl)
 
   return (
     <div>
