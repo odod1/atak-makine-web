@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #0265A9;
+  --color-brand-dark: #0B1120;
+  --color-brand-light: #F8FAFC;
+  
+  --font-heading: Roboto Condensed, ui-sans-serif, system-ui;
+  --font-body: Source Sans 3, ui-sans-serif, system-ui;
+  
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-slide-up: slideUp 0.6s ease-out;
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Temel Ayarlar */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-gray-50 text-gray-800 font-body antialiased;
+  overflow-x: hidden;
+}
+
+/* Heading Fontları */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-heading font-bold text-gray-900;
+}
+
+/* Scrollbar Özelleştirmesi */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-brand-blue/70 transition-colors;
+}
+
+/* Metin Seçimi */
+::selection {
+  @apply bg-brand-blue/20 text-brand-blue;
+}
+
+/* Utility Classes */
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Standart Butonlar - Rounded-Full ve Gradient */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white transition-all duration-300 bg-gradient-to-r from-brand-blue to-blue-600 rounded-full shadow-[0_4px_14px_0_rgba(2,101,169,0.39)] hover:shadow-[0_6px_20px_rgba(2,101,169,0.23)] hover:-translate-y-[1px] hover:scale-[1.02];
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-gray-700 transition-all duration-300 bg-white border border-gray-200 rounded-full shadow-sm hover:shadow-md hover:border-brand-blue/30 hover:text-brand-blue hover:-translate-y-[1px];
+}
+
+/* Ghost Buton (Arka plansız) */
+.btn-ghost {
+  @apply inline-flex items-center justify-center px-6 py-2 text-sm font-bold text-gray-600 transition-all duration-300 rounded-full hover:bg-gray-100 hover:text-brand-blue;
+}
+
+/* Link Butonlar (Metin + Ok) */
+.btn-link {
+  @apply inline-flex items-center text-brand-blue font-semibold text-xs sm:text-sm transition-all duration-300 hover:text-blue-700 hover:translate-x-1;
+}
+
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-brand-blue/30;
+}
+
+/* Font Değişkenleri (Layout'tan gelenler) */
+.font-heading { font-family: var(--font-heading); }
+.font-body { font-family: var(--font-body); }
