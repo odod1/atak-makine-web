@@ -16,19 +16,20 @@ export default async function PanelLayout({ children }: { children: ReactNode })
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Üst Bar */}
       <header className="bg-white shadow sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 md:py-4 flex justify-between items-center">
           {/* Sol: Logo ve Firma Adı */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 md:gap-6">
              <Link href="/panel" className="flex-shrink-0 transition hover:opacity-80">
-                <Image
-                  src="/logos/Atakmakinelogo.png"
-                  alt="Atak Makine"
-                  width={160}
-                  height={50}
-                  className="h-10 w-auto object-contain"
-                  priority
-                  unoptimized
-                />
+                <div className="relative w-32 md:w-40 h-8 md:h-10">
+                  <Image
+                    src="/logos/Atakmakinelogo.png"
+                    alt="Atak Makine"
+                    fill
+                    className="object-contain object-left"
+                    priority
+                    unoptimized
+                  />
+                </div>
              </Link>
              
              {/* Dikey Çizgi ve Firma Adı */}
@@ -43,30 +44,31 @@ export default async function PanelLayout({ children }: { children: ReactNode })
           </div>
 
           {/* Sağ: Aksiyonlar ve Kullanıcı */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 md:gap-6">
              {/* QR Butonu (Header'a Taşındı) */}
              <Link 
                 href="/panel/admin/qr-kodlar" 
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md shadow-sm flex items-center gap-2 text-sm font-bold transition transform hover:scale-105 active:scale-95"
+                className="bg-purple-600 hover:bg-purple-700 text-white p-2 md:px-4 md:py-2 rounded-md shadow-sm flex items-center gap-2 text-sm font-bold transition transform hover:scale-105 active:scale-95"
                 title="QR Kod Merkezi"
              >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
                     <path fillRule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm8-1a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V4zm-9 7a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1v-4zm8-1a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" clipRule="evenodd" />
                 </svg>
-                <span className="hidden sm:inline">QR Kodlar</span>
+                <span className="hidden md:inline">QR Kodlar</span>
              </Link>
 
-             <div className="h-8 w-px bg-gray-200"></div>
+             <div className="h-6 md:h-8 w-px bg-gray-200"></div>
 
              <div className="flex flex-col items-end text-right">
-                <span className="text-gray-800 font-bold text-base leading-tight">
+                <span className="text-gray-800 font-bold text-sm md:text-base leading-tight max-w-[100px] truncate md:max-w-none">
                     {session.user.name}
                 </span>
                 <Link 
                     href="/api/auth/signout" 
-                    className="text-red-600 hover:text-red-800 hover:underline text-sm font-medium mt-0.5"
+                    className="text-red-600 hover:text-red-800 hover:underline text-xs md:text-sm font-medium mt-0.5"
                 >
-                    Güvenli Çıkış
+                    <span className="md:hidden">Çıkış</span>
+                    <span className="hidden md:inline">Güvenli Çıkış</span>
                 </Link>
              </div>
           </div>
